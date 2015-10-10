@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
  * Spring Boot application starter
  */
 @SpringBootApplication
-@ComponentScan
+@ComponentScan("curupira.logsearch.*")
 @EnableAutoConfiguration
 public class Application extends SpringBootServletInitializer {
 
