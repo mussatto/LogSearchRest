@@ -40,3 +40,5 @@ atlassian-ide-plugin.xml
 .classpath
 build
 .settings
+luceneIndex.index
+.DS_Store
