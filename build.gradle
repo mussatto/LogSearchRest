@@ -1,0 +1,41 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.6.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+
+sourceCompatibility = 1.7
+version = '0.1'
+
+war {
+    baseName = 'LogSearchRest'
+    version = '0.1'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+configurations {
+    providedRuntime
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile "com.curupira:LogSearch:0.1"
+    //compile project(':LogSearch')
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+    providedRuntime 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+    providedRuntime 'javax.servlet:jstl'
+}
