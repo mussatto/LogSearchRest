@@ -3,10 +3,7 @@ package curupira.logsearch.app;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.FileReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -32,8 +29,9 @@ public class ClientIntegrationTest {
     @Test
     public void doPostFullFileTest() throws Exception{
         URL urlLocal = new URL("http://localhost:8080/services/indexlog");
+        InputStream is = getClass().getResourceAsStream(SAMPLE_LOG);
 
-        try (BufferedReader br = new BufferedReader(new FileReader(SAMPLE_LOG))) {
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
             String line;
             while ((line = br.readLine()) != null) {
                 StringBuffer response = postString(urlLocal, line);
