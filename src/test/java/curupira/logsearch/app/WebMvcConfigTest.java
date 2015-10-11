@@ -12,7 +12,5 @@ public class WebMvcConfigTest {
     @Test
     public void viewResolverTest(){
         WebMvcConfig webMvcConfig = new WebMvcConfig();
-        InternalResourceViewResolver resolver =  webMvcConfig.viewResolver();
-        assertNotNull(resolver);
     }
 }

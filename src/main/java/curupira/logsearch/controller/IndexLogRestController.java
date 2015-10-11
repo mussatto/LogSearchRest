@@ -1,12 +1,9 @@
 package curupira.logsearch.controller;
 
-import com.curupira.index.FSLogIndexer;
-import com.curupira.index.LogIndexer;
 import curupira.logsearch.app.Config;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.io.IOException;
 
 /**
  * rest controller designed to expose the functionality

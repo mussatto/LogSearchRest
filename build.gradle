@@ -1,9 +1,11 @@
 buildscript {
     repositories {
         mavenCentral()
+        jcenter()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.6.RELEASE")
+        classpath 'org.springframework:springloaded:1.2.0.RELEASE'
     }
 }
 
@@ -38,4 +40,11 @@ dependencies {
     providedRuntime 'org.apache.tomcat.embed:tomcat-embed-jasper'
     providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
     providedRuntime 'javax.servlet:jstl'
+}
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/main/")
+    }
 }
