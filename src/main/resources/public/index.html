@@ -4,17 +4,32 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <title>Log Searcher</title></head>
+
     <script src="/js/jquery-2.1.4.min.js"></script>
-    <script src="/js/angular.min.js" ></script>
+    <script src="/js/angular.min.js"></script>
+
 <body>
-
     <h1>Log Search</h1>
-    <label for="query">Query</label>
-    <input id="query" name="query" alt="Exception"/>
 
-    <button onclick="doSearch();">search</button>
+    <div ng-app="logSearchApp">
+        <div ng-controller="SearchController as search">
+
+            <label for="query">Query</label>
+
+            <input id="query" name="query" alt="Exception"/>
+
+            <button ng-click="doSearch()">search</button>
+
+            <div id="content" ng-repeat="logline in loglines">
+                <p>
+                    {{ logline.logLineNumber }}:{{ logline.log }}
+                </p>
+            </div>
+        </div>
+
+    </div>
 
 
-
+    <script src="/js/logsearch.js"></script>
 </body>
 </html>

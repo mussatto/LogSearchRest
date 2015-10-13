@@ -2,7 +2,6 @@ package curupira.logsearch.controller;
 
 import com.curupira.document.LogSearchDocument;
 import com.curupira.search.LogSearch;
-import com.curupira.search.SimpleLogSearch;
 import curupira.logsearch.app.Config;
 import org.apache.lucene.queryparser.classic.ParseException;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +17,9 @@ public class SearchRestController {
     @RequestMapping("/services/search")
     public List<LogSearchDocument> indexlog(@RequestParam(value="queryString", defaultValue="") String queryString)
             throws IOException, ParseException {
+
+        if("".equals(queryString) || queryString==null)
+            return new ArrayList<>();
 
         LogSearch search = Config.getSearcher();
 
