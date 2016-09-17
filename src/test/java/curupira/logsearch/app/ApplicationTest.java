@@ -1,7 +1,8 @@
 package curupira.logsearch.app;
 
-import curupira.logsearch.app.Application;
 import org.junit.Test;
+
+import curupira.logsearch.Application;
 
 public class ApplicationTest {
 

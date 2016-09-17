@@ -1,26 +1,31 @@
-var logSearchApp = angular.module('logSearchApp', []);
-var searchUrl = "http://localhost:8080/services/search";
+var vm
+window.onload = function () {
+    vm = new Vue({
+      el: '#logSearchDiv',
+      data: {
+        hostName: 'http://localhost:8080',
+        searchQuery:'',
+        logLines: []
+      },
+      methods: {
 
-logSearchApp.controller('SearchController', function ($scope, $http) {
+        search: function () {
+            url = this.hostName+'/search?query='+this.searchQuery;
+            this.$http.get(url).then(function(response){
+                
+            	lines = response.json();
+                if( typeof lines !== 'undefined' && lines != null){
+                    this.$set('logLines', response.body);
+                }
 
-  $scope.loglines=[];
+                console.log('search success!');
+            },
+            function(data){
+            	console.log('error '+data);
+            });
+        }
 
-  $scope.doSearch = function(){
-    var queryString = $("#query").val();
+      }
 
-    $.post(searchUrl,{"queryString":queryString},function(data){
-        $scope.$apply(function(){
-            $scope.loglines=data;
-        });
-    });
-
-  };
-
-  function processLogline(data){
-    var logline={logLineNumber:"1", log:"my log"};
-    $scope.loglines.push(logline);
-  };
-
-
-
-});
+    })
+}

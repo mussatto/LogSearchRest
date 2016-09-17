@@ -1,4 +1,4 @@
-package curupira.logsearch.app;
+package curupira.logsearch;
 
 import com.curupira.index.FSLogIndexer;
 import com.curupira.index.LogIndexer;

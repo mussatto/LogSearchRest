@@ -1,28 +1,33 @@
 package curupira.logsearch.controller;
 
-import com.curupira.document.LogSearchDocument;
-import com.curupira.search.LogSearch;
-import curupira.logsearch.app.Config;
-import org.apache.lucene.queryparser.classic.ParseException;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@org.springframework.web.bind.annotation.RestController
+import org.apache.lucene.queryparser.classic.ParseException;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.curupira.document.LogSearchDocument;
+import com.curupira.search.LogSearch;
+
+import curupira.logsearch.Config;
+
+@RestController
+@CrossOrigin
 public class SearchRestController {
 
-    @RequestMapping("/services/search")
-    public List<LogSearchDocument> indexlog(@RequestParam(value="queryString", defaultValue="") String queryString)
+    @RequestMapping("/search")
+    public List<LogSearchDocument> indexlog(@RequestParam(value="query", defaultValue="") String query)
             throws IOException, ParseException {
 
-        if("".equals(queryString) || queryString==null)
+        if("".equals(query) || query==null)
             return new ArrayList<>();
 
         LogSearch search = Config.getSearcher();
 
-        return search.searchString(queryString);
+        return search.searchString(query);
     }
 }

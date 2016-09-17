@@ -20,22 +20,22 @@ public class ClientIntegrationTest {
     }
     @Test
     public void doPostTest() throws Exception {
-        URL urlLocal = new URL("http://localhost:8080/services/indexlog");
+        URL urlLocal = new URL("http://localhost:8080/index");
         StringBuffer response = postString(urlLocal, "SEVERE: Servlet.service() for servlet jsp threw exception");
-        assertEquals("ack", response.toString());
+        assertEquals("{'response':'ok'}", response.toString());
 
     }
 
     @Test
     public void doPostFullFileTest() throws Exception{
-        URL urlLocal = new URL("http://localhost:8080/services/indexlog");
+        URL urlLocal = new URL("http://localhost:8080/index");
         InputStream is = getClass().getResourceAsStream(SAMPLE_LOG);
 
         try (BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
             String line;
             while ((line = br.readLine()) != null) {
                 StringBuffer response = postString(urlLocal, line);
-                assertEquals("ack", response.toString());
+                assertEquals("{'response':'ok'}", response.toString());
             }
         }
     }

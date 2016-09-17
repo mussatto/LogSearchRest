@@ -1,25 +1,30 @@
 package curupira.logsearch.controller;
 
-import curupira.logsearch.app.Config;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import curupira.logsearch.Config;
 
 
 /**
  * rest controller designed to expose the functionality
  * renders response as JSON
  */
-@org.springframework.web.bind.annotation.RestController
+@RestController
+@CrossOrigin
 public class IndexLogRestController {
+	
 
-    @RequestMapping("/services/indexlog")
+    @RequestMapping("/index")
     public String indexlog(@RequestParam(value="log", defaultValue="") String log){
         try {
             Config.getIndexer().indexLogLine(log, "default");
         } catch (Exception e) {
-            return "nack";
+            return "{'response':'error'}";
         }
 
-        return "ack";
+        return "{'response':'ok'}";
     }
 }
