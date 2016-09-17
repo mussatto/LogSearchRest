@@ -20,7 +20,8 @@ import curupira.logsearch.Config;
 public class SearchRestController {
 
     @RequestMapping("/search")
-    public List<LogSearchDocument> indexlog(@RequestParam(value="query", defaultValue="") String query)
+    public List<LogSearchDocument> indexlog(@RequestParam(value="query", defaultValue="") String query,
+    		@RequestParam(value="file", defaultValue="") String file)
             throws IOException, ParseException {
 
         if("".equals(query) || query==null)

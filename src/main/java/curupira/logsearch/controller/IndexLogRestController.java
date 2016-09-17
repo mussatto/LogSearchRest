@@ -18,9 +18,10 @@ public class IndexLogRestController {
 	
 
     @RequestMapping("/index")
-    public String indexlog(@RequestParam(value="log", defaultValue="") String log){
+    public String indexlog(@RequestParam(value="log", defaultValue="") String log,
+    		@RequestParam(value="file", defaultValue="default") String file){
         try {
-            Config.getIndexer().indexLogLine(log, "default");
+            Config.getIndexer().indexLogLine(log, file);
         } catch (Exception e) {
             return "{'response':'error'}";
         }
