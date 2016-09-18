@@ -20,9 +20,10 @@ public class LogTriggerRestController {
 	private TriggerRepository triggerRepository;
 
 	@RequestMapping("/createTrigger")
-	public String createTrigger(@RequestBody String query) {
+	public String createTrigger(@RequestBody CreateTriggerRequest createTrigger) {
+		
 		LogTrigger trigger = new LogTrigger();
-		trigger.setQuery(query);
+		trigger.setQuery(createTrigger.getQuery());
 
 		triggerRepository.save(trigger);
 

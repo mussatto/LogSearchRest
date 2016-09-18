@@ -31,7 +31,7 @@ window.onload = function () {
             this.getJson(url,'triggers');
         },
         postJson: function(url, sendData){
-            this.$http.post(url, JSON.stringify(sendData)).then(function(response){
+            this.$http.post(url, sendData).then(function(response){
                 console.log("reponse:"+response);
             },
             function(data){
@@ -42,7 +42,7 @@ window.onload = function () {
             this.$http.get(url).then(function(response){
                 
             	responseJson = response.json();
-                if( typeof responseJson !== 'undefined' && responseJson != null){
+                if( typeof response !== 'undefined' && response != null){
                     this.$set(setData, response.body);
                 }
 
