@@ -60,7 +60,7 @@
                            v-on:keyup.enter="createTrigger()"/>
                 </div>
                 
-                <button type="button" class="btn btn-primary" v-on:click="getAllTriggers()">Get Triggers</button>
+                <button type="button" class="btn btn-primary" v-on:click="getAllTriggers()">Refresh Triggers</button>
                 
 				<table class="table table-borderless">
                     <thead>
@@ -76,7 +76,6 @@
                 </table>
 			</div>
 			<div id="alerts" class="tab-pane fade">
-                <button type="button" class="btn btn-primary" v-on:click="getRefreshAlerts()">Refresh Alerts</button>
                 <button type="button" class="btn btn-primary" v-on:click="getAlerts()">Get Alerts</button>
 				<table class="table table-borderless">
                     <thead>
