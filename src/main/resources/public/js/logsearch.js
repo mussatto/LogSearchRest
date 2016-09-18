@@ -16,7 +16,10 @@ window.onload = function () {
             url = this.hostName+'/search?query='+this.searchQuery;
             this.getJson(url, 'logLines');
         },
-          
+        getRefreshAlerts: function () {
+            url = this.hostName+'/refreshAlerts';
+            this.getJson(url, null);
+        },
         getAlerts: function () {
             url = this.hostName+'/getAlerts';
             this.getJson(url, 'alerts');
@@ -43,7 +46,8 @@ window.onload = function () {
                 
             	responseJson = response.json();
                 if( typeof response !== 'undefined' && response != null){
-                    this.$set(setData, response.body);
+                    if(typeof setData !== 'undefined' && setData != null)
+                        this.$set(setData, response.body);
                 }
 
                 console.log('search success!');
