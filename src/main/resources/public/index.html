@@ -1,68 +1,93 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-    <title>Log Searcher</title>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>Log Searcher</title>
 </head>
 
-    <link rel="stylesheet" href="/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/css/bootstrap-theme.min.css" />
-    <link rel="stylesheet" type="text/css" href="/css/log.css" />
-    <script src="/js/jquery-2.1.4.min.js"></script>
-    <script src="/js/vue.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/vue-resource.min.js"></script>
+<link rel="stylesheet" href="/css/bootstrap.min.css" />
+<link rel="stylesheet" href="/css/bootstrap-theme.min.css" />
+<link rel="stylesheet" type="text/css" href="/css/log.css" />
+<link rel="stylesheet" type="text/css" href="/css/simple-sidebar.css" />
+
+<script src="/js/jquery-2.1.4.min.js"></script>
+<script src="/js/vue.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/vue-resource.min.js"></script>
 
 <body>
-    <div id="logSearchDiv">
 
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Log Search</a>
+	<div id="logSearchDiv">
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" href="#search">Search</a></li>
+			<li><a data-toggle="tab" href="#triggers">Triggers</a></li>
+			<li><a data-toggle="tab" href="#alerts">Alerts</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div id="search" class="tab-pane fade in active">
+                
+                <div class="col-sm-10">
+                    <input id="query" name="query" placeholder="Insert search Query"
+                        class="form-control" type="text" v-model="searchQuery"
+                           v-on:keyup.enter="search()"/>
                 </div>
-
-                <div id="navbar" class="navbar-collapse collapse">
-                    <div class="navbar-form navbar-right">
-                        <div class="form-group">
-                            <input id="query" name="query" placeholder="Exception" class="form-control" type="text" v-model="searchQuery"/>
-                        </div>
-                        <button v-on:click="search();" class="btn btn-success">Search</button>
-                    </div>
-                </div><!--/.navbar-collapse -->
-            </div>
-        </nav>
-
-
-        <div class="container" style="margin-top:60px">
-            
+                
                 <table class="table table-borderless">
-                      <thead>
-                         <tr>
-                           <th>Line num.</th>
-                           <th>Text</th>
-                         </tr>
-                       </thead>
-                       <tbody>
-                         <tr v-for="log in logLines" class="logline">
-                           <td>{{log.logLineNumber}}</td>
-                           <td>{{log.log}}</td>
-                         </tr>
-
-                       </tbody>
+                    <thead>
+                        <tr>
+                            <th>Filename</th>
+                            <th>Line num.</th>
+                            <th>Text</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="log in logLines" class="logline">
+                            <td>{{log.filename}}</td>
+                            <td>{{log.logLineNumber}}</td>
+                            <td>{{log.log}}</td>
+                        </tr>
+                    </tbody>
                 </table>
+
                
-        </div>
+			</div>
+			<div id="triggers" class="tab-pane fade">
+				<table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Trigger Query</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="log in logLines" class="logline">
+                            <td>{{log.log}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+			</div>
+			<div id="alerts" class="tab-pane fade">
+				<table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th>Filename</th>
+                            <th>Line num.</th>
+                            <th>Text</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="log in logLines" class="logline">
+                            <td>{{log.filename}}</td>
+                            <td>{{log.logLineNumber}}</td>
+                            <td>{{log.log}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+			</div>
+		</div>
 
-    </div>
-
-
-    <script src="/js/logsearch.js"></script>
+	</div>
+	<script src="/js/logsearch.js"></script>
 </body>
 </html>

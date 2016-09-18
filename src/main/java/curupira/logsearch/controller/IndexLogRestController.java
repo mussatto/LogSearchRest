@@ -17,7 +17,7 @@ import curupira.logsearch.Config;
 public class IndexLogRestController {
 	
 
-    @RequestMapping("/index")
+    @RequestMapping("/indexLog")
     public String indexlog(@RequestParam(value="log", defaultValue="") String log,
     		@RequestParam(value="file", defaultValue="default") String file){
         try {
