@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,7 +20,7 @@ public class LogTriggerRestController {
 	private TriggerRepository triggerRepository;
 
 	@RequestMapping("/createTrigger")
-	public String createTrigger(@RequestParam(value = "query", defaultValue = "") String query) {
+	public String createTrigger(@RequestBody String query) {
 		LogTrigger trigger = new LogTrigger();
 		trigger.setQuery(query);
 
@@ -27,6 +28,12 @@ public class LogTriggerRestController {
 
 		return "{'response':'ok'}";
 
+	}
+	
+	@RequestMapping("/deleteTrigger")
+	public String deleteTrigger(@RequestBody Long id){
+		triggerRepository.delete(id);
+		return "{'response':'ok'}";
 	}
 
 	@RequestMapping("/getAllTriggers")

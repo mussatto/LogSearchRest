@@ -54,6 +54,14 @@
                
 			</div>
 			<div id="triggers" class="tab-pane fade">
+                <div class="col-sm-10">
+                    <input id="query" name="query" placeholder="create new trigger"
+                        class="form-control" type="text" v-model="newTrigger"
+                           v-on:keyup.enter="createTrigger()"/>
+                </div>
+                
+                <button type="button" class="btn btn-primary" v-on:click="getAllTriggers()">Get Triggers</button>
+                
 				<table class="table table-borderless">
                     <thead>
                         <tr>
@@ -61,8 +69,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="log in logLines" class="logline">
-                            <td>{{log.log}}</td>
+                        <tr v-for="trigger in triggers" class="logline">
+                            <td>{{trigger.query}}</td>
                         </tr>
                     </tbody>
                 </table>
