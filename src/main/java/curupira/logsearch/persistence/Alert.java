@@ -19,6 +19,28 @@ public class Alert {
 	private LogTrigger logTrigger;
 	
 	private Date dateCreated;
+	
+	private String loglineMatch;
+	
+	private String filename;
+	
+	private String lineNumber;
+
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
+
+	public String getLineNumber() {
+		return lineNumber;
+	}
+
+	public void setLineNumber(String lineNumber) {
+		this.lineNumber = lineNumber;
+	}
 
 	public Long getId() {
 		return id;
@@ -26,6 +48,14 @@ public class Alert {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getLoglineMatch() {
+		return loglineMatch;
+	}
+
+	public void setLoglineMatch(String loglineMatch) {
+		this.loglineMatch = loglineMatch;
 	}
 
 	public LogTrigger getLogTrigger() {

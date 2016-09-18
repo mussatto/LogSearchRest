@@ -13,7 +13,7 @@ import curupira.logsearch.persistence.TriggerRepository;
 
 @RestController
 @CrossOrigin
-public class TriggerRestController {
+public class LogTriggerRestController {
 
 	@Autowired
 	private TriggerRepository triggerRepository;
@@ -29,7 +29,7 @@ public class TriggerRestController {
 
 	}
 
-	@RequestMapping("/createTrigger")
+	@RequestMapping("/getAllTriggers")
 	public List<LogTrigger> getAll() {
 		return triggerRepository.findAll();
 	}

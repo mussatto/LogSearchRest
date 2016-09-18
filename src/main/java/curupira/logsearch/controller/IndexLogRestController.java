@@ -21,7 +21,10 @@ public class IndexLogRestController {
     public String indexlog(@RequestParam(value="log", defaultValue="") String log,
     		@RequestParam(value="file", defaultValue="default") String file){
         try {
+        	
             Config.getIndexer().indexLogLine(log, file);
+            
+            
         } catch (Exception e) {
             return "{'response':'error'}";
         }

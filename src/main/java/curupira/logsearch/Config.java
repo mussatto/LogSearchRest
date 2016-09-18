@@ -1,11 +1,13 @@
 package curupira.logsearch;
 
+import java.io.IOException;
+
+import org.apache.lucene.store.Directory;
+
 import com.curupira.index.FSLogIndexer;
 import com.curupira.index.LogIndexer;
 import com.curupira.search.LogSearch;
 import com.curupira.search.SimpleLogSearch;
-
-import java.io.IOException;
 
 public class Config {
 
@@ -51,5 +53,9 @@ public class Config {
 
     private static LogIndexer createIndexer() {
         return new FSLogIndexer(Config.getFileIndexPath());
+    }
+    
+    public static void deleteIndexer(FSLogIndexer logIndexer){
+    	logIndexer.deleteIndex();
     }
 }
